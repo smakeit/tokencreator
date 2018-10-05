@@ -278,7 +278,7 @@ extern "C" { \
           _action = N(transfer); \
       } else if(code == N(tokencreator)) { \
           /*print("tokencreator transfer\n");*/ \
-          if(action == N(transfer)) { \
+          if(action == N(transfer) || action == N(tokentrans)) { \
               _action = N(tokentrans); \
           } \
       } \
