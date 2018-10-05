@@ -1,5 +1,6 @@
 # tokencreator
 A smart contract for create tokens on enumivo
+一个在enumivo上用于创建token的智能合约
 
 send 0.0001 ENU to account **tokencreator** and write memo with your token amount and asset symbol(like: ***100000000.0000 TC***), and then your account will recive the token you issue.
 
