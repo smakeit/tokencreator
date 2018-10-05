@@ -10,10 +10,10 @@ Send 0.0001 ENU to account **tokencreator** and write memo with your token amoun
 
 ### create token 创建
 ```
-./enucli -u https://api.enumivo.com/ push action enu.token transfer '["youraccount","tokencreator","0.0001 ENU","1000000000.0000 TC"]' -p youraccount@active
+./enucli -u https://api.enumivo.org/ push action enu.token transfer '["youraccount","tokencreator","0.0001 ENU","1000000000.0000 TC"]' -p youraccount@active
 ```
 
 ### transfer token 转账
 ```
-./enucli -u https://api.enumivo.com/ push action tokencreator transfer '["youraccount","toaccount","1.0000 TC","trans memo"]' -p youraccount@active
+./enucli -u https://api.enumivo.org/ push action tokencreator transfer '["youraccount","toaccount","1.0000 TC","trans memo"]' -p youraccount@active
 ```
