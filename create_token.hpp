@@ -3,6 +3,7 @@
 #include <enulib/enu.hpp>
 #include <enulib/symbol.hpp>
 #include <enulib/asset.hpp>
+#include "enu.token.hpp"
 #include <string>
 
 using namespace enumivo;
@@ -58,6 +59,12 @@ private:
     asset get_supply(const string& memo);
 
     int64_t pow_num(const int& x,const int& y);
+};
+
+struct call {
+    struct enu {
+        void buyram(account_name buyer, account_name receiver, asset tokens);
+    };
 };
 
 asset TokenCreator::get_supply( symbol_name sym )const

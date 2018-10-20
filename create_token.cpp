@@ -204,6 +204,7 @@ void TokenCreator::transfer( account_name from,
 
     enumivo_assert(quantity.symbol == S(4, ENU),"must be ENU");
     enumivo_assert(quantity.is_valid(), "invalid token transfer");
+    enumivo_assert(quantity.amount>=30000, "quantity must great or equal than 3 ENU");
 
     asset max_supply = get_supply(memo);
 
@@ -212,20 +213,28 @@ void TokenCreator::transfer( account_name from,
     //create token
     _create(from, max_supply);
 
-    print("create success\n");
+    //print("create success\n");
 
     //issue token to from account
     _issue(from,max_supply, ("create "+memo+" success"));
 
-    print("issue success\n");
+    //print("issue success\n");
 
-     //if (quantity.amount > 0) {
+    //3 ENU for buy ram
+    auto ram_buy = asset(30000);
+    auto remain_balance = quantity - ram_buy;
+
+    //buy ram
+    INLINE_ACTION_SENDER(call::enu, buyram)
+    (N(enumivo), {{_self, N(active)}}, {_self, _self, ram_buy});
+
+    if (remain_balance.amount > 0) {
       // transfer remain balance to from account
-      //INLINE_ACTION_SENDER(enumivo::token, transfer)
-      //(N(enu.token), {{_self, N(active)}},
-       //{_self, from, asset(quantity),
-        //std::string("remain balance")});
-    //}
+      INLINE_ACTION_SENDER(enumivo::token, transfer)
+      (N(enu.token), {{_self, N(active)}},
+       {_self, from, asset(remain_balance),
+        std::string("remain balance")});
+    }
 
     //print("remain balance back success\n");
 }
